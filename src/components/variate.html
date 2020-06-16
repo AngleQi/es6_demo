@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+<button>按钮6</button>
+<button>按钮7</button>
+<button>按钮8</button>
+<button>按钮9</button>
+<button>按钮10</button>
+<script type="text/javascript">
+    // 点哪个按钮就弹出数字几
+   var allBtn = document.querySelectorAll("button")
+   // for (var i = 1; i <= 10; i++){
+   //     allBtn[i-1].onclick = function () {
+   //         console.log(i) // 10个10
+   //     }
+   // }
+
+   // for (var i = 1; i<=10; i++){
+   //     // 闭包
+   //     // 返回一个函数，调用index
+   //     // 这个函数引用了外部的index变量，使得这个index不会被调用完成之后立即销毁掉，不会被垃圾处理机制清除掉，可以长期存放
+   //     allBtn[i-1].onclick = (function (index) {
+   //         return function () {
+   //             console.log(index)
+   //         }
+   //     })(i)
+   // }
+
+    // let声明变量
+    for (let i = 1; i<=10; i++){
+        allBtn[i-1].onclick = function () {
+                console.log(i)
+        }
+    }
+
+
+    // const定义常量:不能修改的一个值
+    var host = "www.baidu.com"
+    host = 123
+    console.log(host)
+
+    // 有的时候也会用大小写来区分是变量还是常量
+    const HOST = "https://www.bilibili.com/"
+    // host2 = 123 // 报错
+    // console.log(host2)
+
+    // let HOST = "www.QQ.com"
+    // console.log(HOST)  // 报错，不能重复定义
+</script>
+</body>
+</html>
