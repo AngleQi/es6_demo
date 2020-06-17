@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import('../common/variate.js')
+import('../common/arrowFun.js')
 export default {
   name: 'HelloWorld',
   props: {
