@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #d1 {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+<!--点击div，使得div每隔1秒钟改变颜色-->
+<div id="d1"></div>
+<script type="text/javascript">
+    // 箭头函数
+    // var fn = function () {
+    //     var body = document.querySelector("body")
+    //     var div = document.createElement("div")
+    //     div.innerHTML = "helloworld"
+    //     body.appendChild(div)
+    // }
+
+    var fn = () => {
+        var body = document.querySelector("body")
+        var div = document.createElement("div")
+        div.innerHTML = "helloworld"
+        body.appendChild(div)
+    }
+    fn()
+ // this指向
+    var div = document.querySelector("#d1")
+    // div.onclick = function () {
+    //     // var that = this
+    //     // setInterval(function () {
+    //     //     that.style.backgroundColor = `rgb(${parseInt(Math.random()*255)},${parseInt(Math.random()*255)},${parseInt(Math.random()*255)})`
+    //     // },1000)
+    //
+    //     setInterval(function () {
+    //         this.style.backgroundColor = `rgb(${parseInt(Math.random()*255)},${parseInt(Math.random()*255)},${parseInt(Math.random()*255)})`
+    //     }.bind(this),1000)
+    // }
+
+    div.onclick = function () {
+        console.log(this)
+        setInterval(() => {
+            this.style.backgroundColor = `rgb(${parseInt(Math.random()*255)},${parseInt(Math.random()*255)},${parseInt(Math.random()*255)})`
+        },1000)
+    }
+
+    // 参数默认值
+    // 传统写法
+    function fn2(param) {
+        let p = param || 'hello';
+        console.log(p);
+    }
+
+    function aa(a,b) {
+        // 曾经实现默认参数的方式
+        a = a?a:0;
+        b = a?b:0;
+        return a +b
+    }
+    var result = aa()
+    console.log(result)
+
+
+    // ES6写法
+    function fn3(param = 'hello') {
+        console.log(param);
+    }
+
+    var fn4 = (a,b = 5) => {
+        console.log('haha');
+        return a + b;
+    }
+    console.log(fn4(1)); // 第二个参数使用默认值5，输出结果为：6
+    console.log(fn4(1,8)); //9
+
+
+    function add(a=0,b=0) {
+        return a + b
+    }
+    var result2 = add()
+    console.log(result2)
+
+    var x = 3;
+    function cba(x=4,y=x) {
+        console.log(x) // 4
+        console.log(y) // 4
+    }
+    cba()
+    function tt(a=4,y=x) {
+        console.log(y) // 3
+    }
+    tt()
+
+    let xx = 'smyh';
+    function ffn(xx, y = xx) {
+        console.log(xx,y) // vae vae
+    }
+    ffn('vae');
+
+    let h = 'smyh';
+    function ffn2(z, y = h) {
+        console.log(z,y) // vae smyh
+    }
+    ffn2('vae');
+
+    // 扩展运算符
+    // function restFn(a,b,c) {
+    //     console.log(a);
+    //     console.log(b);
+    //     console.log(c);
+    //     console.log(d); // 报错
+    // }
+    // restFn(1,7,3);
+
+    function restFn(...arg) {
+        console.log(arg[0]);
+        console.log(arg[1]);
+        console.log(arg[2]);
+        console.log(arg[3]); //undefined
+    }
+    restFn(1,2,3); // 方法中定义了4个参数，但只引用了3个，在ES6中并不会报错
+
+    // 数组赋值的问题
+    // let arr1 = ['www', 'smyhave', 'com'];
+    // let arr2 = arr1;
+    // console.log('arr1：' + arr1); // arr1：www,smyhave,com
+    // console.log('arr2：' + arr2); // arr2：www,smyhave,com
+    // console.log('------------------');
+    //
+    // arr2.push('你懂得'); // 往arr2里添加一部分内容
+    // console.log('arr1：' + arr1); // arr1：www,smyhave,com,你懂得
+    // console.log('arr2：' + arr2); // arr2：www,smyhave,com,你懂得
+
+    // let arr1 = ['www', 'smyhave', 'com'];
+    // let arr2 = [...arr1]; // arr2会重新开辟内存地址
+    // console.log('arr1：' + arr1); // arr1：www,smyhave,com
+    // console.log('arr2：' + arr2); // arr2：www,smyhave,com
+    // console.log('------------------');
+    //
+    // arr2.push('你懂得'); // 往arr2里添加一部分内容
+    // console.log('arr1：' + arr1); // arr1：www,smyhave,com
+    // console.log('arr2：' + arr2); // arr2：www,smyhave,com,你懂得
+
+    var arr = ["范冰冰","李晨","蔡徐坤","叶良辰","TFBOYS"]
+
+    // 扩展运算符复制数组
+    var arr1 = [...arr]
+    var arr2 = [arr]
+
+    console.log(arr1)
+    console.log(arr = arr1)
+    console.log(arr2)
+
+    function getStarts(a,b,c,d,e) {
+        console.log(a)
+        console.log(b)
+        console.log(c)
+        console.log(d)
+        console.log(e)
+    }
+    getStarts(arr[0],arr[1],arr[2],arr[3],arr[4])
+    getStarts(...arr)
+
+
+    // rest 运算符
+    function restList(first,second, ...arg) {
+        console.log(arg.length);
+    }
+    restList(0,1,2,3,4,5,6);  // 调用函数后，输出结果为5
+
+
+</script>
+</body>
+</html>

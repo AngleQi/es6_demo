@@ -55,6 +55,22 @@
 
     // let HOST = "www.QQ.com"
     // console.log(HOST)  // 报错，不能重复定义
+
+    // 箭头函数
+    var fn = function () {
+        var body = document.querySelector("body")
+        var div = document.createElement("div")
+        div.innerHTML = "helloworld"
+        body.appendChild(div)
+    }
+
+    var fn1 = () => {
+        var body = document.querySelector("body")
+        var div = document.createElement("div")
+        div.innerHTML = "helloworld"
+        body.appendChild(div)
+    }
+    fn1()
 </script>
 </body>
 </html>
