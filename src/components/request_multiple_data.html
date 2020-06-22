@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css"/>
+</head>
+<body>
+<!--同时请求多个数据，并且在多个数据完成之后再执行什么代码-->
+<img src="../assets/img/loading1.gif" class="loading">
+<div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+        <span class="sr-only">45% Complete</span>
+    </div>
+</div>
+<script type="text/javascript" src="../assets/js/jquery-1.11.js" charset="utf-8"></script>
+<!--<script type="text/javascript">-->
+<!--    num = 0;-->
+<!--    for (let i = 0; i < 8; i ++) {-->
+<!--        let img = new Image()-->
+<!--        img.src = "../assets/img/" + (i + 1) + ".jpg";-->
+<!--        img.onload = function () {-->
+<!--            console.log(img.src)-->
+<!--            num ++ ;-->
+<!--            var percent =  parseInt(num/8*100)-->
+<!--            var bar = document.querySelector(".progress-bar").style.width = percent + "%";-->
+<!--            if (num == 8) {-->
+<!--                console.log('加载完毕')-->
+<!--                $('.loading, .progress').remove()-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
+
+
+<!--<script type="text/javascript">-->
+<!--    num = 0;-->
+<!--    var pList = []-->
+<!--    for (let i = 0; i < 8; i ++) {-->
+<!--        let p = new Promise(function (resolve, reject) {-->
+<!--            let img = new Image()-->
+<!--            img.src = "../assets/img/" + (i + 1) + ".jpg";-->
+<!--            img.onload = function () {-->
+<!--               resolve(img)-->
+<!--            }-->
+<!--        })-->
+<!--        // 图片加载修改进度条-->
+<!--        p.then(function () {-->
+<!--            num ++;-->
+<!--            var percent =  parseInt(num/8*100)-->
+<!--            var bar = document.querySelector(".progress-bar").style.width = percent + "%";-->
+<!--        })-->
+<!--        pList.push(p)-->
+<!--    }-->
+
+<!--     // 处理所有图片完成之后的事情-->
+<!--   let pAll =  Promise.all(pList)-->
+<!--    pAll.then(function (res) {-->
+<!--        console.log('所有图片加载完毕')-->
+<!--        console.log(res)-->
+<!--        $('.loading, .progress').remove()-->
+<!--    })-->
+<!--</script>-->
+
+
+
+<!--同时多个请求处理，只要有1个返回结果就立即处理-->
+<script type="text/javascript">
+   // var p1 = Promise.resolve("成功1")
+   // var p2 = Promise.resolve("成功2")
+   // var p3 = Promise.resolve("成功3")
+   // var p4 = Promise.resolve("成功4")
+
+
+   var p1 = new Promise(function (resolve, reject) {
+       setTimeout(function () {
+           resolve("450毫秒后执行")
+       },450)
+   })
+   var p2 = new Promise(function (resolve, reject) {
+       setTimeout(function () {
+           resolve("300毫秒后执行")
+       },300)
+   })
+   var p3 = new Promise(function (resolve, reject) {
+       setTimeout(function () {
+           resolve("400毫秒后执行")
+       },400)
+   })
+   var p4 = new Promise(function (resolve, reject) {
+       setTimeout(function () {
+           resolve("500毫秒后执行")
+       },500)
+   })
+
+    var arr = [p1, p2, p3, p4]
+   // 有多个异步操作，只有1个返回给结果，就立即执行
+    var result = Promise.race(arr)
+   result.then(function (res) {
+       console.log(res)
+   })
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <script type="text/javascript">
+     // 创建成功promise对象
+     var p1 = Promise.resolve('这是成功的promise对象')
+     var p2 = new Promise(function (resolve, reject) {
+         resolve("这是成功的promise对象")
+     })
+
+     console.log(p1)
+     p1.then(function (res) {
+         console.log(res)
+     })
+
+     // 创建拒绝的promise对象
+     var p3 = Promise.reject('这是失败的promise对象')
+     var p4 = new Promise(function (resolve, reject) {
+         reject("这是失败的promise对象")
+     })
+
+     console.log(p3)
+     p3.catch(function (error) {
+         console.log(error)
+     })
+
+
+      // promise链式调用
+     new Promise(function (resolve, reject) {
+         try {
+             resolve(5)
+         } catch (error) {
+             reject('It was my wrong!!!')
+         }
+     }).then(s => s*s).then(s2 => console.log(s2)).then(() => console.log('end'))  // 25  "end"
+ </script>
+</body>
+</html>
